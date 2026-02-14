@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 348 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 100% 27%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 348 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 348 100% 65%;
+
+    --radius: 0.75rem;
+
+    /* Romantic palette */
+    --romantic-black: 0 0% 6%;
+    --romantic-dark-red: 0 100% 27%;
+    --romantic-pink: 348 100% 65%;
+    --romantic-soft-pink: 348 80% 75%;
+    --romantic-glow: 348 100% 65%;
+    --romantic-white: 0 0% 95%;
+
+    /* Glassmorphism */
+    --glass-bg: 0 0% 100% / 0.05;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-blur: 20px;
+
+    /* Glow effects */
+    --glow-pink: 0 0 30px hsl(348 100% 65% / 0.4);
+    --glow-red: 0 0 30px hsl(0 100% 27% / 0.5);
+    --glow-soft: 0 0 60px hsl(348 100% 65% / 0.2);
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 348 100% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 348 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply relative rounded-2xl p-6 backdrop-blur-xl;
+    background: hsla(var(--glass-bg));
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: var(--glow-soft);
+  }
+
+  .glass-card:hover {
+    border-color: hsl(var(--romantic-pink) / 0.3);
+    box-shadow: var(--glow-pink);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 40px hsl(var(--romantic-pink) / 0.5),
+                 0 0 80px hsl(var(--romantic-pink) / 0.3);
+  }
+
+  .glow-button {
+    @apply relative px-8 py-4 rounded-full font-medium tracking-wide;
+    background: linear-gradient(135deg, hsl(var(--romantic-dark-red)), hsl(var(--romantic-pink)));
+    color: hsl(var(--romantic-white));
+    box-shadow: 0 0 30px hsl(var(--romantic-pink) / 0.4),
+                0 0 60px hsl(var(--romantic-pink) / 0.2);
+    transition: all 0.4s ease;
+  }
+
+  .glow-button:hover {
+    box-shadow: 0 0 40px hsl(var(--romantic-pink) / 0.6),
+                0 0 80px hsl(var(--romantic-pink) / 0.3);
+    transform: scale(1.05);
+  }
+
+  .heartbeat {
+    animation: heartbeat 1.2s ease-in-out infinite;
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  56% { transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(348 100% 65% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(348 100% 65% / 0.6), 0 0 80px hsl(348 100% 65% / 0.3);
+  }
+}
+
+/* Hide default cursor globally */
+.custom-cursor-active {
+  cursor: none !important;
+}
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--romantic-black));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--romantic-pink) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--romantic-pink) / 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
